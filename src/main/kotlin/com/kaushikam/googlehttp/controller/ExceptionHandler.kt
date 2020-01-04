@@ -23,6 +23,7 @@ class ExceptionHandler: ResponseEntityExceptionHandler() {
         val container = ApiErrorContainer(
             ApiError(e.errorCode.code, e.message)
         )
+        println(container)
         return handleExceptionInternal(e, container, HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, r)
     }
 
