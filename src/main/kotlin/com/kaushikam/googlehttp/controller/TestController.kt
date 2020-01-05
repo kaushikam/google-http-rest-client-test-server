@@ -18,10 +18,11 @@ class TestController {
     fun helloWorld(
         @RequestBody request: RestRequest
     ): ResponseEntity<RestResponse> {
-        println("Request: $request")
-        if (request.consumerId._id == "1234567890")
+        println("Request: ${request.consumerId}")
+        if (request.consumerId == "1234567890")
             throw ConsumerNotFoundException(consumerId = "1234567890")
+        val consumerId = ConsumerId(request.consumerId)
 
-        return ResponseEntity(RestResponse(message = "Hello ${request.consumerId._id}"), HttpStatus.OK)
+        return ResponseEntity(RestResponse(message = "Hello $consumerId"), HttpStatus.OK)
     }
 }
